@@ -1,0 +1,316 @@
+@media screen and (max-width: 900px) {
+
+
+    .right nav {
+        position: relative;
+        width: 100vw;
+        margin-top: 0px;
+    }
+
+    .right {
+        /* align-self: flex-end; */
+        width: 100vw;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+    }
+
+    .left {
+        position: absolute;
+        left: -100%;
+        z-index: 3;
+        transition: left .10s;
+        width: 60vw;
+    }
+
+    .left1 {
+        left: 0%;
+        background: black;
+
+    }
+
+    .cardlistcontainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100vw;
+        height: auto;
+
+    }
+
+    .navright li {
+        display: none;
+    }
+
+    .border {
+        display: none;
+
+    }
+
+    .logsign {
+        display: none;
+    }
+
+    .navleft {
+        margin-left: 90px;
+    }
+
+    .hamandcross {
+        display: inline;
+    }
+
+    #ham1 {
+        position: absolute;
+        display: inline;
+        width: 30px;
+        filter: invert(1);
+        left: 20px;
+        /* bottom: 20px; */
+        z-index: 3;
+    }
+
+    #cross1 {
+        position: absolute;
+        display: none;
+        width: 30px;
+        filter: invert(1);
+        left: 200px;
+        /* bottom: 10px; */
+        z-index: 3;
+
+
+    }
+
+    .pro1 {
+        display: inline;
+    }
+
+    .listcontainerb {
+        flex-direction: column;
+        width: 50vw;
+
+
+    }
+
+    .toppart {
+        width: 60vw;
+    }
+
+    .middle {
+        width: 60vw;
+        height: 75.5vh;
+    }
+
+    .arraow {
+        display: none;
+    }
+
+    .card1 {
+        width: 50vw;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .title1 {
+
+        margin-left: 31.5px;
+    }
+
+    .listbotom3 {
+        margin: 0px 44px;
+
+    }
+
+    .listbotomc {
+        width: 100vw;
+    }
+
+    .socialmedia {
+        padding-left: 0px;
+        width: 50vw;
+
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        height: 5vh;
+    }
+
+    .addlibrary ul {
+        width: 60vw;
+    }
+
+    .addlibrary ul div {
+        width: 50vw;
+        margin-left: 10px;
+        padding-left: 10px;
+        overflow-y: scroll;
+    }
+
+    .addlibrary ul {
+        overflow-y: scroll;
+    }
+
+    .lowerpart {
+        width: 60vw;
+    }
+
+    .listfooter ul {
+        width: 58vw;
+    }
+
+    .footerbtn {
+        width: 30vw;
+    }
+
+    .playbar {
+        z-index: 4;
+    }
+
+    .playbartop {
+        display: flex;
+        width: 90vw;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    #songtitle {
+        width: 24vw;
+    }
+
+    .playbarimg {
+        margin-right: 17px;
+        padding-right: 0px;
+    }
+
+    #songduration {
+        width: 19vw;
+        /* margin-left: 8px; */
+    }
+
+    .ranger input {
+        width: 30vw;
+        height: 3px;
+        margin-left: 4px;
+    }
+
+    .inp0 {
+        width: 49vw;
+        height: 4vh;
+        padding-left: 39px;
+    }
+
+    .inpimg {
+        top: 6px;
+    }
+
+    #ham1 {
+        bottom: 28px;
+    }
+
+    #cross1 {
+        bottom: 28px;
+    }
+
+    .pro1 {
+        display: inline;
+        filter: invert(1);
+        width: 30px;
+    }
+
+    .disno {
+        /* display: flex; */
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        left: 14px;
+        top: -80px;
+        flex-direction: column;
+        transition: all;
+        transition-duration: 1s;
+        transition-timing-function: ease-in-out;
+
+        background-color: rgb(44, 44, 53);
+        width: 25vw;
+        color: white;
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+        border-radius: 3px;
+
+    }
+
+    .disno button {
+        width: 20vw;
+        /* margin: 5px 0px; */
+    }
+
+
+    .logsign {
+        display: inline;
+        /* position: absolute;
+        left: 80%;
+        top: 35px;
+        display: flex;
+        flex-direction: column;
+        width: 30vw;
+        height: 20vh;
+         background: rgb(255, 86, 86);  */
+    }
+
+
+    #res2 {
+        height: 4vh;
+        /* border: 2px solid #f0d3d3; */
+        border-radius: 3px;
+        width: 25vw;
+        background-color: #161717;
+        color: white;
+    }
+
+    #res1 {
+        height: 4vh;
+        /* border: 2px solid #f0d3d3; */
+        border-radius: 3px;
+        width: 25vw;
+        background-color: #717e7e;
+        filter: none;
+    }
+
+
+    #arrowbtn {
+        display: inline;
+        width: 20vw;
+        background: none;
+        outline: none;
+        border: none;
+    }
+
+    #arrowbtn img {
+
+        filter: invert(1);
+
+        width: 25px;
+    }
+
+    .prodiv {
+        position: relative;
+        height: 10vh;
+        width: 30vw;
+        top: 48px;
+        z-index: 3;
+        background-color: #101010;
+    }
+
+    .prodiv img {
+        position: absolute;
+        left: 53px;
+        top: 34px;
+        /* filter: invert(1); */
+    }
+
+}
