@@ -1,260 +1,188 @@
+// Object to store DOM elements
+const elements = {
+    homeIconDefault: document.getElementById('hm1'),
+    homeIconActive: document.getElementById('hm2'),
+    searchIconDefault: document.getElementById('search1'),
+    searchIconActive: document.getElementById('search2'),
+    searchInputIcon: document.querySelector('.inpimg'),
+    navigationToggle1: document.getElementById('a1'),
+    navigationToggle2: document.getElementById('a23'),
+    searchInputField: document.getElementById('inp1'),
+    songListContainer: document.querySelector('.songlist'),
+    playButton: document.getElementById('play1'),
+    progressBar: document.getElementById('seekBar'),
+    songDurationDisplay: document.getElementById('songduration'),
+    nextButton: document.getElementById('next'),
+    previousButton: document.getElementById('previous'),
+    playbackBar: document.getElementById('playbar1'),
+    menuToggle: document.querySelector('.hamandcross'),
+    sidePanel: document.querySelector('.left'),
+    hamburgerIcon: document.getElementById('ham1'),
+    closeIcon: document.getElementById('cross1'),
+    profileMenuButton: document.querySelector('.pro1'),
+    dropdownArrowButton: document.getElementById('arrowbtn'),
+    dropdownMenu: document.querySelector('.disno'),
+    volumeControl: document.getElementById('audioSound'),
+};
+elements.searchInputIcon.style.display = 'none';
 
+// Object to manage audio player functionality
+const audioPlayer = {
+    audioInstance: new Audio(),
+    currentTrackIndex: 0,
+    trackList: [],
 
-let homeimg1 = document.getElementById('hm1');
-let homeimg2 = document.getElementById('hm2');
-let searchimg1 = document.getElementById('search1');
-let searchimg2 = document.getElementById('search2');
-let a = document.getElementById('a1');
-let a2 = document.getElementById('a23');
-let searchimg3 = document.getElementsByClassName('inpimg')[0];
+    // Play a specific track
+    playTrack(trackUrl) {
+        this.audioInstance.src = trackUrl;
+        this.audioInstance.play();
+        elements.playButton.src = "./resources/songimg/pause.png";
+    },
 
-let audiSongs = document.querySelector(".songlist");
-
-let searchinput1 = document.getElementById('inp1');
-
-searchimg3.style.display = 'none';
-
-
-
-
-let change1 = () => {
-
-    if (a.contains(homeimg1)) {
-        homeimg1.style.display = 'none';
-        homeimg2.style.display = 'inline';
-        searchimg2.style.display = 'inline';
-        searchimg1.style.display = 'none';
-        searchinput1.style.display = 'inline';
-        searchimg3.style.display = 'inline';
-
-
-    }
-}
-let change2 = () => {
-
-    if (a2.contains(searchimg2)) {
-        homeimg1.style.display = 'block';
-        homeimg2.style.display = 'none';
-        searchimg2.style.display = 'none';
-        searchimg1.style.display = 'block';
-        searchinput1.style.display = 'none';
-        searchimg3.style.display = 'none';
-    }
-}
-
-
-
-a2.addEventListener('click', change1);
-a.addEventListener('click', change2);
-
-
-
-
-
-let hover = () => {
-    document.getElementById('btnimg').style.filter = 'invert(1)';
-    document.getElementById('btnspan').style.color = 'white';
-    document.getElementById('btnimg').classList.add("transbtn1");
-    document.getElementById('btnspan').classList.add('transbtn1');
-    // alert('hover')
-}
-let unhover = () => {
-    document.getElementById('btnimg').style.filter = 'invert(50%)';
-    document.getElementById('btnspan').style.color = 'grey';
-
-    // alert('hover')
-}
-document.getElementsByClassName('btn1')[0].addEventListener('mouseover', hover);
-document.getElementsByClassName('btn1')[0].addEventListener('mouseout', unhover);
-
-
-// ******* audio part start from 
-let audio = new Audio();
-
-// code of playing the music
-let playmusic = (track) => {
-    audio.src = track;
-    audio.play();
-
-    // songtitle.innerHTML = decodeURI(track);
-    play1.src = "./resources/songimg/pause.png";
-
-
-
-}
-let getsongs = (async () => {
-    let audi = await fetch("/api/songs/");
-
-    let respone = await audi.json();
-
-    for (const value of Object.values(respone)) {
-
-        document.getElementsByClassName('songlist')[0].innerHTML +=`
-        <div class="eachsongholder"><img src="./resources/9040477_music_note_beamed_icon.svg" alt="">
-        <a href="${value}">
-        ${value.split('/')[2]}
-        </a>
-        </div> `
-
-
-    }
-
-    Array.from(audiSongs.getElementsByTagName('a')).forEach((e) => {
-
-        e.addEventListener("click", (h) => {
-            h.preventDefault();
-            playmusic(e.getAttribute('href'));
-
-            playbar1.style.top = '90%';
-
-
-
-        })
-    })
-
-    //code for changeing the Play and pause button
-
-    play1.addEventListener("click", () => {
-
-        if (audio.paused) {
-
-            audio.play(audio);
-
-
-            play1.src = "./resources/songimg/pause.png";
-
+    // Toggle between play and pause
+    togglePlayPause() {
+        if (this.audioInstance.paused) {
+            this.audioInstance.play();
+            elements.playButton.src = "./resources/songimg/pause.png";
+        } else {
+            this.audioInstance.pause();
+            elements.playButton.src = "./resources/songimg/play.svg";
         }
-        else {
-            audio.pause();
-            play1.src = "./resources/songimg/play.svg";
+    },
+
+    // Play the next track
+    playNextTrack() {
+        if (this.currentTrackIndex < this.trackList.length - 1) {
+            this.currentTrackIndex++;
+            this.playTrack(this.trackList[this.currentTrackIndex]);
         }
+    },
 
+    // Play the previous track
+    playPreviousTrack() {
+        if (this.currentTrackIndex > 0) {
+            this.currentTrackIndex--;
+            this.playTrack(this.trackList[this.currentTrackIndex]);
+        }
+    },
+};
 
-
-
-
-    })
-    //code for next 
-
-    next.addEventListener('click', () => {
-
-      
-
-
-    })
-    //code for  previous
-    previous.addEventListener('click', () => {
-
-
-    })
-
-    //for autoplay the next song
-    // try {
-    //     let v = document.querySelector('.songname').innerHTML;
-
-    //     audio.addEventListener('ended', () => {
-    //         let index = songslist1.indexOf(audio.src.split("/").slice(-1)[0]);
-    //         if (songslist1.length > (index + 1)) {
-    //             playmusic(songslist1[index + 1]);
-    //         }
-    //     })
-
-    // }
-    // catch (error) {
-    //     console.log(error);
-    // }
-
-
-
-    const seekBar = document.getElementById('seekBar');
-
-    // Update the seek bar as the audio plays
-    audio.addEventListener('timeupdate', function () {
-        const currentTime = audio.currentTime;
-        const duration = audio.duration;
-        seekBar.value = (currentTime / duration) * 100;
-
-        const currentMinutes = Math.floor(currentTime / 60);
-        const currentSeconds = Math.floor(currentTime % 60);
-        const durationMinutes = Math.floor(duration / 60);
-        const durationSeconds = Math.floor(duration % 60);
-
-        const currentTimeString = `${currentMinutes}:${currentSeconds < 10 ? '0' : ''}${currentSeconds} `;
-        const durationTimeString = `${durationMinutes}:${durationSeconds < 10 ? '0' : ''}${durationSeconds} `;
-
-        songduration.innerHTML = `${currentTimeString} : ${durationTimeString} `;
+// Function to add event listeners
+const setupEventListeners = () => {
+    // Navigation toggles
+    elements.navigationToggle1.addEventListener('click', () => {
+        elements.homeIconDefault.style.display = 'block';
+        elements.homeIconActive.style.display = 'none';
+        elements.searchIconActive.style.display = 'none';
+        elements.searchIconDefault.style.display = 'block';
+        elements.searchInputField.style.display = 'none';
+        elements.searchInputIcon.style.display = 'none';
     });
 
-    // Seek the audio when user interacts with the seek bar
-    seekBar.addEventListener('input', function () {
-        const seekTime = (audio.duration * (seekBar.value / 100));
-        audio.currentTime = seekTime;
+    elements.navigationToggle2.addEventListener('click', () => {
+        elements.homeIconDefault.style.display = 'none';
+        elements.homeIconActive.style.display = 'inline';
+        elements.searchIconActive.style.display = 'inline';
+        elements.searchIconDefault.style.display = 'none';
+        elements.searchInputField.style.display = 'inline';
+        elements.searchInputIcon.style.display = 'inline';
     });
 
+    // Play/pause button
+    elements.playButton.addEventListener('click', () => audioPlayer.togglePlayPause());
 
+    // Next and previous buttons
+    elements.nextButton.addEventListener('click', () => audioPlayer.playNextTrack());
+    elements.previousButton.addEventListener('click', () => audioPlayer.playPreviousTrack());
 
+    // Progress bar interaction
+    elements.progressBar.addEventListener('input', () => {
+        const seekTime = audioPlayer.audioInstance.duration * (elements.progressBar.value / 100);
+        audioPlayer.audioInstance.currentTime = seekTime;
+    });
 
+    // Volume control interaction
+    elements.volumeControl.addEventListener('input', () => {
+        const volume = elements.volumeControl.value / 100;
+        audioPlayer.audioInstance.volume = volume;
+    });
 
-})()
+    // Side panel toggle
+    elements.menuToggle.addEventListener('click', () => {
+        elements.sidePanel.classList.toggle('left1');
+        if (elements.sidePanel.classList.contains('left1')) {
+            elements.hamburgerIcon.style.display = 'none';
+            elements.closeIcon.style.display = 'inline';
+        } else {
+            elements.hamburgerIcon.style.display = 'inline';
+            elements.closeIcon.style.display = 'none';
+        }
+    });
 
+    // Profile dropdown menu
+    elements.profileMenuButton.addEventListener('click', () => {
+        elements.dropdownMenu.style.top = '60px';
+    });
 
+    elements.dropdownArrowButton.addEventListener('click', () => {
+        elements.dropdownMenu.style.top = '-80px';
+    });
+};
 
+// Function to fetch and display songs
+const loadSongs = async () => {
+    try {
+        const response = await fetch("/api/songs/");
+        const tracks = await response.json();
+        audioPlayer.trackList = Object.values(tracks);
 
+        // Populate the song list
+        elements.songListContainer.innerHTML = audioPlayer.trackList
+            .map(
+                (track) => `
+            <div class="song-item">
+                <img src="./resources/9040477_music_note_beamed_icon.svg" alt="Music Note">
+                <a href="${track}">${track.split('/').pop()}</a>
+            </div>`
+            )
+            .join("");
 
+        // Add click event to each song link
+        const songLinks = Array.from(elements.songListContainer.getElementsByTagName('a'));
+        songLinks.forEach((link, index) => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                audioPlayer.currentTrackIndex = index;
+                audioPlayer.playTrack(link.getAttribute('href'));
+                elements.playbackBar.style.top = '90%';
+            });
+        });
 
-document.querySelector('.hamandcross').addEventListener('click', function () {
+        // Automatically play the next song when the current one ends
+        audioPlayer.audioInstance.addEventListener('ended', () => audioPlayer.playNextTrack());
 
+        // Update progress bar and song duration display
+        audioPlayer.audioInstance.addEventListener('timeupdate', () => {
+            const { currentTime, duration } = audioPlayer.audioInstance;
+            elements.progressBar.value = (currentTime / duration) * 100;
 
-    document.querySelector('.left').classList.toggle('left1');
-    if (document.querySelector('.left').classList.contains('left1')) {
-        document.querySelector('#ham1').style.display = 'none';
-        document.querySelector('#cross1').style.display = 'inline';
+            const formatTime = (time) => {
+                const minutes = Math.floor(time / 60);
+                const seconds = Math.floor(time % 60).toString().padStart(2, '0');
+                return `${minutes}:${seconds}`;
+            };
 
+            elements.songDurationDisplay.innerText = `${formatTime(currentTime)} / ${formatTime(duration)}`;
+        });
+    } catch (error) {
+        console.error("Error loading songs:", error);
     }
+};
 
+// Initialize the app
+const initializeApp = () => {
+    setupEventListeners();
+    loadSongs();
+};
 
-
-    else {
-        document.querySelector('#ham1').style.display = 'inline';
-        document.querySelector('#cross1').style.display = 'none';
-    }
-
-
-
-})
-
-let funinp = (e) => {
-    document.querySelector('#leftid').classList.remove('left1');
-    document.querySelector('#ham1').style.display = 'inline';
-    document.querySelector('#cross1').style.display = 'none';
-
-
-
-}
-
-searchimg1.addEventListener('click', funinp);
-
-// document.querySelector('#cross1').addEventListener('click', () => {
-//     searchinput1.style.display = 'none';
-//     searchimg3.style.display = 'none';
-//     // document.querySelector('#ham1').style.display = 'inline';
-//     // document.querySelector('#cross1').style.display = 'none';
-
-
-// })
-
-let hovfun = () => {
-    document.querySelector('.disno').style.top = '60px';
-    // console.log('clicked');
-}
-let rhovfun = () => {
-    document.querySelector('.disno').style.top = '-80px';
-
-
-}
-
-document.querySelector('.pro1').addEventListener('click', hovfun);
-// document.querySelector('.pro1').removeEventListener('dblclick', hovfun);
-arrowbtn.addEventListener('click', rhovfun);
-
-
+initializeApp();
