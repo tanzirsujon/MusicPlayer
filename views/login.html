@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="../css/output.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto+Mono:wght@100..700&display=swap');
+
+    .inp1 {
+      padding-left: 10px;
+      margin: 10px 0px;
+      font-family: "Roboto Mono", monospace;
+      font-optical-sizing: auto;
+      font-weight: 400;
+      height: 6vh;
+      width: 23vw;
+      outline: none;
+
+      border-radius: 3px;
+
+      box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    }
+
+    .monoFont {
+      font-family: "Roboto Mono", monospace;
+      font-optical-sizing: auto;
+      font-weight: 400;
+    }
+
+    .btnfont {
+      font-family: "Roboto Mono", monospace;
+      font-optical-sizing: auto;
+      font-weight: 700;
+    }
+
+    form {
+      background: rgb(151 187 230);
+
+    }
+
+    body {
+      background: linear-gradient(0.25turn, #c898a1, #9d9de6, rgb(250, 211, 211));
+    }
+
+    .btn {
+      background-color: rgba(103, 161, 255, 1);
+    }
+
+    .formcontainerh label {
+      color: whitesmoke;
+      font-family: "Roboto Mono", monospace;
+      font-optical-sizing: auto;
+      font-weight: 700;
+    }
+  </style>
+
+</head>
+
+<body class=" h-[100vh] w-[100vw] flex justify-center overflow-hidden">
+  <div class="container flex justify-between items-center">
+    <div class="bgimg w-[70vw]">
+      <img src="../resources/img/Sign up-rafiki.png" alt="" class="w-[40vw]">
+    </div>
+    <div class="formcontainerh h-[100vh]   w-[30vw] flex justify-center items-center">
+
+
+      <form action="/" method="post"
+        class="flex flex-col  gap-5 justify-center h-[65vh] w-[28vw] items-center rounded-2xl ">
+        <h1 class="btnfont font-bold text-gray-100">Log In</h1>
+        <div class="user flex flex-col">
+          <label for="username" class="monoFont">Username</label>
+          <input type="text" name="username" required placeholder="ex:john_Doe" class="inp1">
+        </div>
+
+
+        <div class="pass flex flex-col">
+          <label for="password" class="monoFont">Password</label>
+          <input type="password" name="password" title="password" required class="inp1" placeholder="password">
+        </div>
+        <div class="flex items-center justify-center gap-7 pb-3">
+          <input type="submit" value="Submit" class=" btn btnfont w-40 h-8 text-white rounded-md hover:cursor-pointer ">
+          <span>|</span>
+          <a href="/signup"
+            class="monoFont underline underline-offset-4 decoration-slate-600 text-black hover:text-white">Signup</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,19 +1,32 @@
 import express, { response } from "express";
 import path from "path";
-import mongoose from "mongoose";
+import conn from "./connection/connection.js";
+import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
+
+
+import signUprouter from "./routes/signup.js";
+import logInrouter from "./routes/login.js";
+import authHandler from "./middlleware/auth.js";
 import { fileURLToPath } from 'url';
 import fs from 'fs/promises';
 import dotenv from "dotenv";
-import fetch from "node-fetch";
-dotenv.config();
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-app.use(express.json());
+dotenv.config();
 const port = process.env.PORT | 3000;
+const url = process.env.DB_URL;
+conn(url);
+app.use(express.json());
+app.use(cookieParser());
+
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
-app.get('/', (req, res) => {
-    res.send('hey i am music player');
+app.use('/signup', signUprouter);
+app.use('/', logInrouter);
+app.get('/home', authHandler, (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
 })
 
 app.get('/api/songs', async (req, res) => {
@@ -26,6 +39,7 @@ app.get('/api/songs', async (req, res) => {
         res.status(500).json({ error: 'Unable to fetch songs' });
     }
 });
+
 
 app.listen(port, () => {
     console.log(`server is listening port ${port}`)
