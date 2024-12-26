@@ -1,5 +1,8 @@
 import jwt from "jsonwebtoken";
-const secretKey = "@jijur$ujon19"
+import dotenv from "dotenv";
+dotenv.config();
+
+const secretKey = process.env.JWT_KEY;
 export function setLoggerHandler(user) {
     return jwt.sign({
         _id: user._id,
