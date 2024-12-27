@@ -502,8 +502,8 @@ body {
 
 .playbartop {
     display: flex;
-    width: 120vw;
-    justify-content: space-around;
+    width: 100vw;
+    justify-content: center;
     align-items: center;
 }
 
@@ -517,8 +517,8 @@ body {
 .soundRange {
 
     position: absolute;
-    right: 2.5rem;
-    top: 2rem;
+    left: 2.5rem;
+    top: 0.9rem;
     display: flex;
     gap: 5px;
     justify-content: center;

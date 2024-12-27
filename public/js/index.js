@@ -125,7 +125,7 @@ const setupEventListeners = () => {
     });
 
     elements.dropdownArrowButton.addEventListener('click', () => {
-        elements.dropdownMenu.style.top = '-80px';
+        elements.dropdownMenu.style.top = '-155px';
     });
 };
 

@@ -56,6 +56,51 @@
       font-optical-sizing: auto;
       font-weight: 700;
     }
+
+    @media screen and (max-width: 900px) {
+      body {
+        height: 90vh;
+      }
+
+      .container {
+        flex-direction: column;
+        height: 85vh;
+        justify-content: space-around;
+        gap: 30px;
+      }
+
+      .bgimg {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 24vh;
+      }
+
+      .bgimg img {
+        width: 59vw;
+      }
+
+      .formcontainerh {
+        height: auto;
+
+        width: 100%;
+      }
+
+      .formcontainerh form {
+        width: 81%;
+        height: 60vh;
+      }
+
+      .inp1 {
+        width: 65vw;
+      }
+
+      .btn {
+        width: 26vw;
+        height: 4vh;
+      }
+    }
   </style>
 
 </head>
@@ -88,7 +133,8 @@
         <div class="flex items-center justify-center gap-7 pb-3">
           <input type="submit" value="Submit" class=" btn btnfont w-40 h-8 text-white rounded-md hover:cursor-pointer ">
           <span>|</span>
-          <a href="/" class="monoFont underline underline-offset-4 decoration-slate-600 text-black hover:text-white">logIn</a>
+          <a href="/"
+            class="monoFont underline underline-offset-4 decoration-slate-600 text-black hover:text-white">logIn</a>
         </div>
       </form>
     </div>

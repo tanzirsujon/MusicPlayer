@@ -140,12 +140,10 @@ a {
 
     transition-property: all;
     transition-timing-function: ease-in;
-    transition-duration: 3s;
+    transition-duration: 1s;
 }
 
-.playbarimg {
-    padding-right: 100px;
-}
+
 
 .playbarimg img {
     margin: 0 10px;
@@ -169,6 +167,13 @@ a {
 
 #songduration {
     width: 10vw;
+    position: absolute;
+    right: 2.5rem;
+    top: 0.9rem;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
 }
 
 #songtitle {

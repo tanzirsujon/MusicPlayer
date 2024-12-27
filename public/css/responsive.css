@@ -93,7 +93,8 @@
 
     .listcontainerb {
         flex-direction: column;
-        width: 50vw;
+        width: 40vw;
+        gap: 20px;
 
 
     }
@@ -122,8 +123,19 @@
         margin-left: 31.5px;
     }
 
+    .listbotom1 {
+        height: auto;
+        margin: 0px 10px;
+    }
+
+    .listbotom2 {
+        height: auto;
+        margin: 0px 10px;
+    }
+
     .listbotom3 {
-        margin: 0px 44px;
+        height: auto;
+        margin: 0px 10px;
 
     }
 
@@ -133,7 +145,7 @@
 
     .socialmedia {
         padding-left: 0px;
-        width: 50vw;
+        width: 55vw;
 
         display: flex;
         align-items: center;
@@ -166,6 +178,7 @@
 
     .footerbtn {
         width: 30vw;
+        margin-top: 80px;
     }
 
     .playbar {
@@ -174,14 +187,13 @@
 
     .playbartop {
         display: flex;
-        width: 90vw;
-        justify-content: space-around;
+        width: 100vw;
+        justify-content: center;
         align-items: center;
+        flex-direction: column;
     }
 
-    #songtitle {
-        width: 24vw;
-    }
+
 
     .playbarimg {
         margin-right: 17px;
@@ -189,12 +201,31 @@
     }
 
     #songduration {
-        width: 19vw;
-        /* margin-left: 8px; */
+        position: absolute;
+        width: 27vw;
+
+        right: 0.5rem;
+        top: 0.9rem;
+    }
+
+    .ranger {
+        width: auto;
+    }
+
+    .soundRange {
+       display: none;
+    }
+
+    .soundRange img {
+        width: 5vw;
+    }
+
+    .soundRange input {
+        width: 22vw;
     }
 
     .ranger input {
-        width: 30vw;
+        width: 90vw;
         height: 3px;
         margin-left: 4px;
     }
@@ -230,7 +261,7 @@
         align-items: center;
         justify-content: center;
         left: 14px;
-        top: -80px;
+        top: -155px;
         flex-direction: column;
         transition: all;
         transition-duration: 1s;
